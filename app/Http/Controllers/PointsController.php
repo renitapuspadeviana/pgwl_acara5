@@ -56,9 +56,9 @@ class PointsController extends Controller
         'image' => $name_image
     ];
         // Store the point data in the database
-    if (!$this->points->create($data)){
-       return redirect()->back()->with('error', 'Gagal menyimpan point');
-   }
+        if (!$this->points->create($data)){
+            return redirect()->back()->with('error', 'Gagal menyimpan point');
+            }
 
          // Kembali ke peta
          return redirect()->route('map')->with('success', 'Point berhasil disimpan');
@@ -94,6 +94,25 @@ class PointsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Mencari nama file gambar berdasarkan ID point
+        $image = $this->points->find($id)->image;
+
+        // Hapus data dari database
+        if (!$this->points->destroy($id)){
+        return redirect()->route('map')->with('error', 'Gagal menghapus point');
+        }
+       // Hapus file gambar jika ada
+       if ($image != null) {
+        //cek apakah file gambar ada sebelum dihapus
+        if (file_exists('./storage/images/' . $image)) {
+            // Hapus file gambar
+                unlink('./storage/images/' . $image);
+            }
+       }
+       // Kembali ke peta
+       return redirect()->route('map')->with('success', 'Point berhasil dihapus');
+
+
     }
 }
+

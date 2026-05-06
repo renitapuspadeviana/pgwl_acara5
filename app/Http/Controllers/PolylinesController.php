@@ -60,4 +60,30 @@ class PolylinesController extends Controller
        // Kembali ke peta
        return redirect()->route('map')->with('success', 'Polyline berhasil disimpan');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        // Mencari nama file gambar berdasarkan ID polyline
+        $image = $this->polylines->find($id)->image;
+
+        // Hapus data dari database
+        if (!$this->polylines->destroy($id)){
+        return redirect()->route('map')->with('error', 'Gagal menghapus polyline');
+        }
+       // Hapus file gambar jika ada
+       if ($image != null) {
+        //cek apakah file gambar ada sebelum dihapus
+        if (file_exists('./storage/images/' . $image)) {
+            // Hapus file gambar
+                unlink('./storage/images/' . $image);
+            }
+       }
+       // Kembali ke peta
+       return redirect()->route('map')->with('success', 'Polyline berhasil dihapus');
+
+
+    }
 }

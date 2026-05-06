@@ -62,4 +62,30 @@ class PolygonsController extends Controller
          // Kembali ke peta
             return redirect()->route('map')->with('success', 'Polygon berhasil disimpan');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        // Mencari nama file gambar berdasarkan ID polygon
+        $image = $this->polygons->find($id)->image;
+
+        // Hapus data dari database
+        if (!$this->polygons->destroy($id)){
+        return redirect()->route('map')->with('error', 'Gagal menghapus polygon');
+        }
+       // Hapus file gambar jika ada
+       if ($image != null) {
+        //cek apakah file gambar ada sebelum dihapus
+        if (file_exists('./storage/images/' . $image)) {
+            // Hapus file gambar
+                unlink('./storage/images/' . $image);
+            }
+       }
+       // Kembali ke peta
+       return redirect()->route('map')->with('success', 'Polygon berhasil dihapus');
+
+
+    }
 }

@@ -20,6 +20,13 @@ Route::post('/store-polylines', [PolylinesController::class, 'store'])->name('po
 
 Route::post('/store-polygons', [PolygonsController::class, 'store'])->name('polygons.store');
 
+// Route untuk menghapus data titik berdasarkan ID
+Route ::delete('/delete-points/{id}', [PointsController::class, 'destroy'])->name('points.delete');
+//Route untuk menghapus data garis berdasarkan ID
+Route ::delete('/delete-polylines/{id}', [PolylinesController::class, 'destroy'])->name('polylines.delete');
+//Route untuk menghapus data polygon berdasarkan ID
+Route ::delete('/delete-polygons/{id}', [PolygonsController::class, 'destroy'])->name('polygons.delete');
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
