@@ -78,7 +78,12 @@ class PointsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data=[
+        'title' => 'Edit Point',
+        'id' => $id,
+        ];
+        return view('map-edit-point', $data);
+
     }
 
     /**
@@ -86,7 +91,69 @@ class PointsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'geometry' => 'required',
+                'description' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ],
+            [
+                'name.required' => 'Nama wajib diisi.',
+                'geometry.required' => 'Geometri point wajib diisi.',
+                'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+                'name.string' => 'Nama harus berupa string.',
+                'description.required' => 'Deskripsi wajib diisi.',
+                'description.string' => 'Deskripsi harus berupa string.',
+                'image.image' => 'File harus berupa gambar.',
+                'image.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
+                'image.max' => 'Ukuran gambar tidak boleh lebih dari 2MB    .',
+            ]
+        );
+
+        // Cek dan buat folder jika belum ada
+        if (!is_dir('storage/images')) {
+            mkdir('storage/images', 0777, true);
+        }
+
+        // Mencari nama file gambar lama berdasarkan ID point
+        $image_old = $this->points->find($id)->image;
+
+        // Upload dan simpan gambar
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+             $name_image = time() . '_point.' . strtolower($image->getClientOriginalExtension());
+
+             $image->move('storage/images', $name_image);
+
+              // Hapus file gambar jika ada
+              if ($image_old != null) {
+                //cek apakah file gambar ada sebelum dihapus
+                if (file_exists('./storage/images/' . $image_old)) {
+                // Hapus file gambar
+                unlink('./storage/images/' . $image_old);
+                }
+       }
+
+        } else {
+            $name_image = $image_old; // Jika tidak ada gambar baru, gunakan nama gambar lama
+        }
+
+        $data = [
+            'geom' => $request->geometry,
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $name_image
+        ];
+
+        // Update the point data in the database
+        if (!$this->points->find($id)->update($data)){
+            return redirect()->back()->with('error', 'Gagal memperbarui data point');
+            }
+
+         // Kembali ke peta
+         return redirect()->route('map')->with('success', 'Data point berhasil diperbarui');
     }
 
     /**
