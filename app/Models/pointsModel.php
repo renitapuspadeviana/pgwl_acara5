@@ -14,7 +14,7 @@ class pointsModel extends Model
     {
         $points = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))->get();
+        updated_at, status'))->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -30,6 +30,7 @@ class pointsModel extends Model
                     'id' => $point->id,
                     'name' => $point->name,
                     'description' => $point->description,
+                    'status' => $point->status,
                     'image' => $point->image,
                     'created_at' => $point->created_at,
                     'updated_at' => $point->updated_at,
@@ -46,7 +47,7 @@ class pointsModel extends Model
     {
         $points = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))->where('id', $id)
+        updated_at, status'))->where('id', $id)
         ->where('id', $id)
         ->get();
 
@@ -64,6 +65,7 @@ class pointsModel extends Model
                     'id' => $point->id,
                     'name' => $point->name,
                     'description' => $point->description,
+                    'status' => $point->status,
                     'image' => $point->image,
                     'created_at' => $point->created_at,
                     'updated_at' => $point->updated_at,

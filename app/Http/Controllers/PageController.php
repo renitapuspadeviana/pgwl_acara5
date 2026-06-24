@@ -40,14 +40,30 @@ class PageController extends Controller
     }
 
 
-    public function table()
+    public function polygons()
     {
     $data=[
-        'title' => 'Tabel Data',
-        'points' => $this->points->all(),
-        'polylines' => $this->polylines->all(),
+        'title' => 'Tabel Polygons',
         'polygons' => $this->polygons->all(),
     ];
-    return view('table', $data);
+    return view('table.table_polygons', $data);
+    }
+
+    public function polylines()
+    {
+    $data=[
+        'title' => 'Tabel Polylines',
+        'polylines' => $this->polylines->all(),
+    ];
+    return view('table.table_polylines', $data);
+    }
+
+    public function points()
+    {
+    $data=[
+        'title' => 'Tabel Points',
+        'points' => $this->points->all(),
+    ];
+    return view('table.table_points', $data);
     }
 }

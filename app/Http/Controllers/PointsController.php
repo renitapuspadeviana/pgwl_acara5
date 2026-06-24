@@ -53,6 +53,7 @@ class PointsController extends Controller
         'geom' => $request->geometry_point,
         'name' => $request->name,
         'description' => $request->description,
+        'status' => $request->status,
         'image' => $name_image
     ];
         // Store the point data in the database
@@ -144,6 +145,7 @@ class PointsController extends Controller
             'geom' => $request->geometry,
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
             'image' => $name_image
         ];
 

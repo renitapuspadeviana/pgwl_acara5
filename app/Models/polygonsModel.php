@@ -14,7 +14,7 @@ class polygonsModel extends Model
     {
         $polygons = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))->get();
+        updated_at, status'))->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -30,6 +30,7 @@ class polygonsModel extends Model
                     'id' => $polygon->id,
                     'name' => $polygon->name,
                     'description' => $polygon->description,
+                    'status' => $polygon->status,
                     'image' => $polygon->image,
                     'created_at' => $polygon->created_at,
                     'updated_at' => $polygon->updated_at,
@@ -45,7 +46,7 @@ class polygonsModel extends Model
     {
         $polygons = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))
+        updated_at, status'))
         ->where('id', $id)
         ->get();
 
@@ -63,6 +64,7 @@ class polygonsModel extends Model
                     'id' => $polygon->id,
                     'name' => $polygon->name,
                     'description' => $polygon->description,
+                    'status' => $polygon->status,
                     'image' => $polygon->image,
                     'created_at' => $polygon->created_at,
                     'updated_at' => $polygon->updated_at,

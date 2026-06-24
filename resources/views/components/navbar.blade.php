@@ -1,58 +1,26 @@
-<style>
-    .custom-navbar{
-        background: linear-gradient(
-            135deg,
-            #0A2647,
-            #144272,
-            #205295
-        );
-        box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light shadow-sm"
+     data-navbar-on-scroll="data-navbar-on-scroll">
 
-    .custom-navbar .navbar-brand{
-        font-size: 1.3rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
+    <div class="container">
 
-    .custom-navbar .nav-link{
-        color: rgba(255,255,255,0.9) !important;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
+        <a class="navbar-brand d-flex align-items-center"
+           href="{{ route('home') }}">
 
-    .custom-navbar .nav-link:hover{
-        color: #ffffff !important;
-        transform: translateY(-2px);
-    }
+            <img class="img-fluid"
+                 src="{{ asset('assets/img/gallery/logo-icon.png') }}"
+                 alt="Logo"
+                 width="45">
 
-    .custom-navbar .btn{
-        border-radius: 30px;
-        font-weight: 600;
-    }
+            <span class="text-theme fw-bold fs-4 ps-2">
+                {{ $title }}
+            </span>
 
-    body{
-        padding-top: 80px;
-    }
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
-    <div class="container-fluid">
-
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <i class="fa-solid fa-earth-asia me-2"></i>
-            {{ $title }}
         </a>
 
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -61,61 +29,75 @@
         <div class="collapse navbar-collapse"
              id="navbarSupportedContent">
 
-            <ul class="navbar-nav ms-auto align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item mx-1">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="fas fa-home me-1"></i>
+                <li class="nav-item px-2">
+                    <a class="nav-link fw-medium"
+                       href="{{ route('home') }}">
                         Beranda
                     </a>
                 </li>
 
-                <li class="nav-item mx-1">
-                    <a class="nav-link" href="{{ route('map') }}">
-                        <i class="fa-solid fa-map me-1"></i>
+                <li class="nav-item px-2">
+                    <a class="nav-link fw-medium"
+                       href="{{ route('map') }}">
                         Peta
                     </a>
                 </li>
 
-                <li class="nav-item mx-1">
-                    <a class="nav-link" href="{{ route('table') }}">
-                        <i class="fa-solid fa-table me-1"></i>
-                        Tabel
-                    </a>
-                </li>
+            <li class="nav-item dropdown px-2">
+    <a class="nav-link dropdown-toggle fw-medium"
+       href="#"
+       id="spatialDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+        Data Spasial
+    </a>
 
-                <li class="nav-item mx-1">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-circle-info me-1"></i>
-                        Tentang
-                    </a>
-                </li>
+    <ul class="dropdown-menu" aria-labelledby="spatialDropdown">
+        <li>
+            <a class="dropdown-item" href="{{ route('points') }}">
+                Point
+            </a>
+        </li>
 
-                @guest
-                <li class="nav-item ms-3">
-                    <a href="{{ route('login') }}"
-                       class="btn btn-light btn-sm px-3">
-                        <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>
-                        Login
-                    </a>
-                </li>
-                @endguest
+        <li>
+            <a class="dropdown-item" href="{{ route('polylines') }}">
+                Polyline
+            </a>
+        </li>
 
-                @auth
-                <li class="nav-item ms-3">
-                    <form action="{{ route('logout') }}"
-                          method="POST">
-                        @csrf
-                        <button type="submit"
-                                class="btn btn-outline-light btn-sm px-3">
-                            <i class="fa-solid fa-right-from-bracket me-1"></i>
-                            Logout
-                        </button>
-                    </form>
-                </li>
-                @endauth
+        <li>
+            <a class="dropdown-item" href="{{ route('polygons') }}">
+                Polygon
+            </a>
+        </li>
+    </ul>
+</li>
+
 
             </ul>
+
+            @guest
+                <a href="{{ route('login') }}"
+                   class="btn btn-lg btn-dark bg-gradient">
+                    Login
+                </a>
+            @endguest
+
+            @auth
+                <form action="{{ route('logout') }}"
+                      method="POST">
+                    @csrf
+
+                    <button class="btn btn-lg btn-dark bg-gradient"
+                            type="submit">
+                        Logout
+                    </button>
+
+                </form>
+            @endauth
 
         </div>
 

@@ -16,7 +16,9 @@ Route::get('/map', [PageController::class, 'map'])->
 middleware(['auth', 'verified'])->
 name('map');
 
-Route::get('/table', [PageController::class, 'table'])->name('table');
+Route::get('/table/table_points', [PageController::class, 'points'])->name('points');
+Route::get('/table/table_polygons', [PageController::class, 'polygons'])->name('polygons');
+Route::get('/table/table_polylines', [PageController::class, 'polylines'])->name('polylines');
 
 Route::post('/store-points', [PointsController::class, 'store'])->name('points.store');
 
@@ -28,10 +30,12 @@ Route::post('/store-polygons', [PolygonsController::class, 'store'])->name('poly
 Route ::delete('/delete-points/{id}', [PointsController::class, 'destroy'])->name('points.delete');
 
 // Route untuk mengedit data titik berdasarkan ID
-Route ::get('/edit-point/{id}', [PointsController::class, 'edit'])->name('point.edit');
+Route ::get('/edit-point/{id}',
+[PointsController::class,
+'edit'])->name('point.edit');
 
 //Route untuk mengupdate data titik berdasarkan ID
-Route ::patch('/update-point/{id}', [PointsController::class, 'update'])->name('point.update');
+Route ::patch('/update-point/{id}',[PointsController::class,'update'])->name('point.update');
 
 //Route untuk menghapus data garis berdasarkan ID
 Route ::delete('/delete-polylines/{id}', [PolylinesController::class, 'destroy'])->name('polylines.delete');

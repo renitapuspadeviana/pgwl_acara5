@@ -14,7 +14,7 @@ class polylinesModel extends Model
     {
         $polylines = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))->get();
+        updated_at, status'))->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -30,6 +30,7 @@ class polylinesModel extends Model
                     'id' => $polyline->id,
                     'name' => $polyline->name,
                     'description' => $polyline->description,
+                    'status' => $polyline->status,
                     'image' => $polyline->image,
                     'created_at' => $polyline->created_at,
                     'updated_at' => $polyline->updated_at,
@@ -46,7 +47,7 @@ class polylinesModel extends Model
     {
         $polylines = $this->select(DB::raw('id,
         ST_AsGeoJSON(geom) as geojson, name, description, image, created_at,
-        updated_at'))->where('id', $id)
+        updated_at, status'))->where('id', $id)
         ->where('id', $id)
         ->get();
 
@@ -64,6 +65,7 @@ class polylinesModel extends Model
                     'id' => $polyline->id,
                     'name' => $polyline->name,
                     'description' => $polyline->description,
+                    'status' => $polyline->status,
                     'image' => $polyline->image,
                     'created_at' => $polyline->created_at,
                     'updated_at' => $polyline->updated_at,

@@ -50,6 +50,7 @@ class PolylinesController extends Controller
             'geom' => $request->geometry_polyline,
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
             'image' => $name_image,
         ];
 
@@ -126,6 +127,7 @@ class PolylinesController extends Controller
             'geom' => $request->geometry,
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
             'image' => $name_image
         ];
 

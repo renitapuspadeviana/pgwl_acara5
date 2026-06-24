@@ -51,6 +51,7 @@ class PolygonsController extends Controller
             'geom' => $request->geometry_polygon,
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
             'image' => $name_image,
         ];
 
@@ -129,6 +130,7 @@ class PolygonsController extends Controller
             'geom' => $request->geometry,
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,
             'image' => $name_image
         ];
 

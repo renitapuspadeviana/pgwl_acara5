@@ -30,7 +30,7 @@
         <div id="map"></div>
 
         <!-- Modal Form Edit -->
-        <div class="modal" tabindex="-1" id="modalEdit">
+        {{-- <div class="modal" tabindex="-1" id="modalEdit">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -70,7 +70,108 @@
                     </form>
                 </div>
             </div>
+        </div> --}}
+        <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditLabel">
+                    <i class="fa-solid fa-pen-to-square me-2"></i>
+                    Edit Polyline
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+            </div>
+
+            <form action="{{ route('polyline.update', $id) }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                @csrf
+                @method('PATCH')
+
+                <div class="modal-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   placeholder="Fill in the name of the polyline">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control"
+                                      id="description"
+                                      name="description"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="geometry" class="form-label">Geometry</label>
+                            <textarea class="form-control"
+                                      id="geometry"
+                                      name="geometry"
+                                      rows="3"></textarea>
+                        </div>
+                         <div class="col-12">
+                          <select class="form-select" name="status" id="status">
+    <option value="">Pilih Status</option>
+    <option value="Ringan">Ringan</option>
+    <option value="Sedang">Sedang</option>
+    <option value="Berat">Berat</option>
+</select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="image" class="form-label">Image</label>
+                            <input class="form-control"
+                                   type="file"
+                                   id="image"
+                                   name="image"
+                                   onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <img src=""
+                                 alt="Preview Image"
+                                 id="preview-image"
+                                 class="img-thumbnail"
+                                 width="300">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Close
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        <i class="fa-solid fa-floppy-disk me-1"></i>
+                        Save
+                    </button>
+                </div>
+
+            </form>
+
         </div>
+    </div>
+</div>
 
 
     @endsection
@@ -139,6 +240,17 @@
                 //mengisi form modal dengan data yang sudah diedit
                 $('#name').val(properties.name);
                 $('#description').val(properties.description);
+let status = (properties.status || '').toString().trim().toLowerCase();
+
+if (status === 'ringan') {
+    $('#status').val('Ringan');
+} else if (status === 'sedang') {
+    $('#status').val('Sedang');
+} else if (status === 'berat') {
+    $('#status').val('Berat');
+} else {
+    $('#status').val('');
+}
                 $('#geometry').val(objectGeometry);
                 $('#preview-image').attr('src',"{{asset('storage/images')}}/" + properties.image);
 
@@ -166,6 +278,17 @@
                         //mengisi form modal dengan data yang sudah diedit
                         $('#name').val(properties.name);
                         $('#description').val(properties.description);
+            let status = (properties.status || '').toString().trim().toLowerCase();
+
+if (status === 'ringan') {
+    $('#status').val('Ringan');
+} else if (status === 'sedang') {
+    $('#status').val('Sedang');
+} else if (status === 'berat') {
+    $('#status').val('Berat');
+} else {
+    $('#status').val('');
+}
                         $('#geometry').val(objectGeometry);
                         $('#preview-image').attr('src',"{{asset('storage/images')}}/" + properties.image);
 
