@@ -2,114 +2,182 @@
 
 @section('styles')
 <style>
-    body{
-        background: #f5f8fb;
-    }
 
-    /* HERO (menyesuaikan gaya Zou gradient) */
-    .hero-banner{
-        background: linear-gradient(135deg,#0A2647,#144272,#205295);
-        color: white;
-        padding: 60px 50px;
-        border-radius: 20px;
-        margin-bottom: 40px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        position: relative;
-        overflow: hidden;
-    }
+body{
+    background:#f8fafc;
+}
 
-    .hero-banner h1{
-        font-weight: 800;
-        font-size: 2.2rem;
-        margin-bottom: 10px;
-    }
+/* HERO */
 
-    .hero-banner p{
-        opacity: 0.9;
-        max-width: 700px;
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
+.hero-modern{
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    border-radius:30px;
+    padding:70px;
+    color:white;
+    text-align:center;
+    margin-bottom:50px;
+    position:relative;
+    overflow:hidden;
+}
 
-    /* DASHBOARD CARD */
-    .dashboard-card{
-        border: none;
-        border-radius: 18px;
-        overflow: hidden;
-        transition: all .3s ease;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+.hero-modern::before{
+    content:'';
+    position:absolute;
+    width:400px;
+    height:400px;
+    right:-100px;
+    top:-100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+}
 
-    .dashboard-card:hover{
-        transform: translateY(-6px);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-    }
+.hero-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:999px;
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    margin-bottom:20px;
+    font-size:14px;
+}
 
-    .card-content{
-        padding: 22px;
-        color: white;
-        position: relative;
-    }
+.hero-modern h1{
+    font-size:4rem;
+    font-weight:800;
+    margin-bottom:20px;
+}
 
-    .card-content i{
-        position: absolute;
-        right: 18px;
-        top: 18px;
-        font-size: 42px;
-        opacity: 0.25;
-    }
+.hero-modern p{
+    max-width:750px;
+    margin:auto;
+    opacity:.9;
+    line-height:1.9;
+    font-size:1.05rem;
+}
 
-    .card-content h5{
-        font-size: 14px;
-        font-weight: 500;
-        opacity: 0.95;
-        margin-bottom: 10px;
-    }
 
-    .card-content h1{
-        font-size: 38px;
-        font-weight: 800;
-        margin: 0;
-    }
+/* STAT CARD */
 
-    /* COLOR STYLE (lebih soft & konsisten template) */
-    .point-card{
-        background: linear-gradient(135deg,#198754,#20c997);
-    }
+.modern-stat-card{
+    background:white;
+    border-radius:24px;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    transition:.3s;
+}
 
-    .line-card{
-        background: linear-gradient(135deg,#0d6efd,#6ea8fe);
-    }
+.modern-stat-card:hover{
+    transform:translateY(-8px);
+}
 
-    .polygon-card{
-        background: linear-gradient(135deg,#fd7e14,#ffb84d);
-    }
+.icon-box{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
 
-    .user-card{
-        background: linear-gradient(135deg,#6f42c1,#a66bff);
-    }
+.modern-stat-card h2{
+    font-weight:800;
+    margin:0;
+    color:#0f172a;
+}
 
-    /* ABOUT CARD */
-    .about-card{
-        border: none;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+.modern-stat-card span{
+    color:#64748b;
+}
 
-    .about-card .card-header{
-        background: #0A2647;
-        color: white;
-        font-weight: 600;
-        padding: 18px 22px;
-        border: none;
-    }
 
-    .about-card .card-body{
-        padding: 22px;
-        color: #555;
-        line-height: 1.7;
-    }
+/* SECTION */
+
+.section-heading{
+    font-weight:800;
+    color:#0f172a;
+}
+
+
+/* FEATURE */
+
+.feature-card{
+    background:white;
+    border-radius:24px;
+    padding:35px;
+    text-align:center;
+    height:100%;
+    border:1px solid #edf2f7;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.feature-card i{
+    font-size:40px;
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+.feature-card h5{
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.feature-card p{
+    color:#64748b;
+    margin:0;
+}
+
+
+/* ABOUT */
+
+.about-modern{
+    background:white;
+    border-radius:30px;
+    padding:50px;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.mini-title{
+    color:#2563eb;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.about-modern h2{
+    margin-top:10px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.about-modern p{
+    color:#64748b;
+    line-height:1.9;
+    margin:0;
+}
+
+
+/* BUTTON */
+
+.btn-primary{
+    background:#2563eb;
+    border:none;
+    border-radius:14px;
+    padding:14px 28px;
+    font-weight:600;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
 
 </style>
 @endsection
@@ -117,138 +185,82 @@
 
 @section('content')
 
-<section class="py-0">
+<div class="container py-5">
 
-    {{-- BACKGROUND IMAGE --}}
-    <div class="bg-holder d-none d-md-block"
-         style="background-image:url({{ asset('assets/img/illustrations/landing.png') }}); background-position:right top; background-size:contain;">
+    {{-- HERO --}}
+    <div class="hero-modern">
+
+        <span class="hero-badge">
+            <i class="fas fa-satellite-dish me-2"></i>
+            Spatial Infrastructure Monitoring
+        </span>
+
+        <h1>
+            Infrasight
+        </h1>
+
+        <p>
+            Platform monitoring dan pelaporan kerusakan infrastruktur berbasis Sistem Informasi Geografis (SIG)
+            yang dirancang untuk membantu identifikasi lokasi, dokumentasi kondisi lapangan,
+            serta mendukung pengambilan keputusan secara cepat, akurat, dan terintegrasi.
+        </p>
+
+        <a href="{{ route('map') }}" class="btn btn-primary btn-lg mt-3">
+            <i class="fas fa-map-marked-alt me-2"></i>
+            Buka Dashboard Peta
+        </a>
+
     </div>
 
-    <div class="container">
-        <div class="row align-items-center min-vh-75 min-vh-lg-100">
 
-            <div class="col-md-7 col-lg-6 col-xxl-5 py-6 text-sm-start text-center">
+    {{-- STATISTICS --}}
+    <div class="row g-4 mt-3">
 
-                <h1 class="mt-6 mb-sm-4 fw-semi-bold lh-sm fs-4 fs-lg-5 fs-xl-6">
-                    🌍 WebGIS Dashboard<br class="d-block d-lg-block" />
-                    Sistem Informasi Spasial Interaktif
-                </h1>
+        <div class="col-md-4">
 
-                <p class="mb-4 fs-1">
-                    Aplikasi berbasis Laravel dan Leaflet.js untuk visualisasi data spasial seperti
-                    point, polyline, dan polygon, serta manajemen data atribut secara real-time.
-                </p>
+            <div class="modern-stat-card">
 
-                <a class="btn btn-lg btn-success" href="{{ route('map') }}" role="button">
-                    Lihat Peta
-                </a>
+                <div class="icon-box bg-success-subtle">
+                    <i class="fas fa-map-marker-alt text-success"></i>
+                </div>
+
+                <div>
+                    <h2>{{ $points_count }}</h2>
+                    <span>Titik Kerusakan</span>
+                </div>
 
             </div>
 
         </div>
-    </div>
 
-</section>
+        <div class="col-md-4">
 
-    {{-- STATS --}}
-  <div class="row justify-content-center px-4">
+            <div class="modern-stat-card">
 
-    {{-- POINTS --}}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 shadow px-4 card-span pt-4 dashboard-card-hover">
+                <div class="icon-box bg-primary-subtle">
+                    <i class="fas fa-road text-primary"></i>
+                </div>
 
-            <div class="card-body text-center">
-
-                <h6 class="fw-bold text-success mb-3">POINTS</h6>
-
-                <h1 class="fw-bold display-5 text-success mb-0">
-                    {{ $points_count }}
-                </h1>
+                <div>
+                    <h2>{{ $polylines_count }}</h2>
+                    <span>Segmen Jalan</span>
+                </div>
 
             </div>
 
         </div>
-    </div>
 
-    {{-- POLYLINES --}}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 shadow px-4 card-span pt-4 dashboard-card-hover">
+        <div class="col-md-4">
 
-            <div class="card-body text-center">
+            <div class="modern-stat-card">
 
-                <h6 class="fw-bold text-primary mb-3">POLYLINES</h6>
+                <div class="icon-box bg-warning-subtle">
+                    <i class="fas fa-draw-polygon text-warning"></i>
+                </div>
 
-                <h1 class="fw-bold display-5 text-primary mb-0">
-                    {{ $polylines_count }}
-                </h1>
-
-            </div>
-
-        </div>
-    </div>
-
-    {{-- POLYGONS --}}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 shadow px-4 card-span pt-4 dashboard-card-hover">
-
-            <div class="card-body text-center">
-
-                <h6 class="fw-bold text-warning mb-3">POLYGONS</h6>
-
-                <h1 class="fw-bold display-5 text-warning mb-0">
-                    {{ $polygons_count }}
-                </h1>
-
-            </div>
-
-        </div>
-    </div>
-
-  </div>
-
-<section class="py-5" id="about">
-
-    <div class="container">
-
-        {{-- TITLE --}}
-        <div class="row">
-            <div class="col-lg-9 mx-auto text-center mb-4">
-
-                <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">
-                    Tentang Aplikasi
-                </h5>
-
-                <p class="text-muted mb-5">
-                    Sistem informasi geografis berbasis web untuk pengelolaan dan visualisasi data spasial.
-                </p>
-
-            </div>
-        </div>
-
-        {{-- CONTENT --}}
-        <div class="row justify-content-center">
-
-            <div class="col-lg-10">
-
-                <div class="card border-0 shadow-lg rounded-4">
-
-                    <div class="card-body p-5">
-
-                        <p class="mb-4 fs-1">
-                            Aplikasi WebGIS ini dikembangkan menggunakan framework
-                            <strong>Laravel</strong> sebagai backend dan
-                            <strong>Leaflet.js</strong> sebagai library pemetaan interaktif
-                            untuk mendukung visualisasi data spasial.
-                        </p>
-
-                        <p class="mb-0 fs-1">
-                            Sistem ini memungkinkan pengguna melakukan digitasi data geospasial
-                            berupa <strong>titik, garis, dan poligon</strong>, serta mengelola atribut
-                            dalam bentuk database terintegrasi untuk analisis dan pengambilan keputusan.
-                        </p>
-
-                    </div>
-
+                <div>
+                    <h2>{{ $polygons_count }}</h2>
+                    <span>Wilayah Monitoring</span>
                 </div>
 
             </div>
@@ -257,6 +269,131 @@
 
     </div>
 
-</section>
+
+    {{-- FEATURES --}}
+    <section class="mt-5">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-heading">
+                Fitur Unggulan
+            </h2>
+
+            <p class="text-muted">
+                Sistem dirancang untuk mendukung proses monitoring, pelaporan,
+                dan pengelolaan kerusakan infrastruktur secara terintegrasi.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <i class="fas fa-map-location-dot"></i>
+
+                    <h5>Pemetaan Interaktif</h5>
+
+                    <p>
+                        Menampilkan lokasi kerusakan secara spasial dengan visualisasi peta yang responsif.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <i class="fas fa-pen-ruler"></i>
+
+                    <h5>Digitasi Langsung</h5>
+
+                    <p>
+                        Tambahkan titik, garis, maupun area kerusakan langsung dari dashboard peta.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <i class="fas fa-database"></i>
+
+                    <h5>Manajemen Data</h5>
+
+                    <p>
+                        Penyimpanan data spasial dan atribut secara terstruktur menggunakan Laravel.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h5>Monitoring Real-Time</h5>
+
+                    <p>
+                        Mendukung pemantauan kondisi infrastruktur dan pembaruan data secara berkala.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {{-- ABOUT --}}
+    <section class="mt-5">
+
+        <div class="about-modern">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <span class="mini-title">
+                        TENTANG PLATFORM
+                    </span>
+
+                    <h2>
+                        Monitoring Infrastruktur yang Lebih Efisien dan Terukur
+                    </h2>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <p>
+                        Infrasight dikembangkan sebagai platform WebGIS untuk mendukung proses
+                        inventarisasi, monitoring, dan pelaporan kerusakan infrastruktur secara
+                        terpusat. Sistem memungkinkan pengguna mengelola data spasial secara
+                        interaktif sehingga proses identifikasi lokasi dan penentuan prioritas
+                        penanganan dapat dilakukan dengan lebih cepat dan akurat.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
 
 @endsection
